@@ -12,7 +12,11 @@
 		<p>Wait while we check it out!.</p>
 		
 		<script>
-		
+		let ydf = null;
+		YggdrasilDecisionForests().then(function (m) {
+		  ydf = m;
+		  console.log("The library is loaded and ready to be used!");
+		});
 		</script>
 
 	</body>
