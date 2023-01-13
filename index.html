@@ -9,13 +9,14 @@
 			let model = null;
 			let ydf = null;
 			YggdrasilDecisionForests().then(function (m) {
-			  ydf = m;
-			  console.log("The library is loaded and ready to be used!");
+				ydf = m;
+				console.log("The library is loaded and ready to be used!");
+				ydf.loadModelFromUrl("https://aveach1.github.io/tfdf_model.zip").then((loadedModel) => {
+					model = loadedModel;
+					console.log("The model is loaded");
+				});
 			});
-			ydf.loadModelFromUrl("https://aveach1.github.io/tfdf_model.zip").then((loadedModel) => {
-			  model = loadedModel;
-			  console.log("The model is loaded");
-			});
+			
 		</script>
 	</head>
 	<body>
