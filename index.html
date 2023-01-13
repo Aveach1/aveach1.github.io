@@ -3,14 +3,20 @@
 	<title>Phish Checker</title>
 	<head>
 		<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
-		<script src="https://aveach1.github.io/ydf/inference.js">
+		<script src="https://aveach1.github.io/ydf/inference.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.0/jszip.min.js"></script>
+		<script>
+			let model = null;
 			let ydf = null;
 			YggdrasilDecisionForests().then(function (m) {
 			  ydf = m;
 			  console.log("The library is loaded and ready to be used!");
 			});
+			ydf.loadModelFromUrl("https://aveach1.github.io/tfdf_model.zip").then((loadedModel) => {
+			  model = loadedModel;
+			  console.log("The model is loaded");
+			});
 		</script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.0/jszip.min.js"></script>
 	</head>
 	<body>
 
