@@ -17,6 +17,11 @@
 		  ydf = m;
 		  console.log("The library is loaded and ready to be used!");
 		});
+		let model = null;
+		ydf.loadModelFromUrl("model.zip").then((loadedModel) => {
+		  model = loadedModel;
+		  console.log("The model is loaded");
+		});
 		</script>
 
 	</body>
