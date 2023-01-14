@@ -89,7 +89,7 @@
 		
         writeToTerminal(
           `Predictions computed in ${endTimeMs - startTimeMs} milliseconds`);
-		if(predictions > .8){
+		if(predictions > .65){
 			document.getElementById('terminal').value = "";
 			writeToTerminal('The website is valid | safety rating: ' + (predictions));
 		}
