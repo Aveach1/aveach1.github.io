@@ -49,6 +49,7 @@
 		var numChar = 0;
 		var numSpecial = 0;
 		var numNumber = 0;
+		var lengthOfURL = untouchedURL.length
 		const parsedURL = new URL(untouchedURL);
 		for(var i = 0; i < untouchedURL.length(); i++){
 			var currentPos = untouchedURL[i];
@@ -64,7 +65,7 @@
 		preparedString['full_url'].append(untouchedURL);
 		preparedString['url_special_characters'].append(numSpecial);
 		preparedString['url_length'].append(untouchedURL.length());
-		preparedString['num_to_char_ratio'].append(numChar/(untouchedURL.length));
+		preparedString['num_to_char_ratio'].append(numChar/(lengthOfURL));
 		preparedString['protocol'].append(parsedURL.protocol);
 		preparedString['domain'].append(parsedURL.domain);
 		preparedString['path'].append(parsedURL.pathname);
