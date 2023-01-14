@@ -60,16 +60,16 @@
 		var numChar = 0;
 		var numSpecial = 0;
 		var numNumber = 0;
+		var i = 0;
 		var lengthOfURL = untouchedURL.length;
 		const parsedURL = new URL(untouchedURL);
-		for(var i = 0; i < lengthOfURL; i++){
-			var currentPos = untouchedURL[i];
-			console.log(currentPos)
-			console.log(typeof curretPos)
-			if((typeof currentPos) === "number"){
+		for (var i = 0; i < lengthOfURL; i++){
+			console.log(untouchedURL[i])
+			console.log(typeof untouchedURL[i])
+			if((typeof untouchedURL[i]) === "number"){
 				numNumber = numNumber + 1;
 			}
-			else if((typeof currentPos) === "string"){
+			else if((typeof untouchedURL[i]) === "string"){
 				numChar = numChar + 1;
 			}
 			else{
