@@ -75,6 +75,7 @@
 			else{
 				numSpecial = numSpecial + 1;
 			}
+		}
 		preparedString['full_url']=[untouchedURL];
 		preparedString['url_special_characters']= [numSpecial];
 		preparedString['url_length']=[lengthOfURL];
@@ -84,8 +85,6 @@
 		preparedString['path']=[(parsedURL.pathname)];
 		preparedString['query']=[(parsedURL.search)];
 		preparedString['fragment']=[(parsedURL.fragment)];
-		
-		}
         console.log("Examples:", preparedString);
 
         const startTimeMs = performance.now();
