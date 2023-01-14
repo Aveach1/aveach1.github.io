@@ -46,8 +46,6 @@
           model = loadedModel;
 
           writeToTerminal("Model loaded");
-          writeToTerminal("Input features:");
-          writeToTerminal(model.getInputFeatures());
 
           document.getElementById("btn_load_model").disabled = true;
           document.getElementById("btn_apply_model").disabled = false;
@@ -147,8 +145,7 @@
         name="testingURL"
         style="border: 1px solid black; width: 100%"
         rows="15"
-      >
-      </textarea>
+      ></textarea>
     </p>
 
     <div class="button_box">
