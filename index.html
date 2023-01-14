@@ -88,8 +88,7 @@
         const startTimeMs = performance.now();
         let predictions = model.predict(preparedString);
         const endTimeMs = performance.now();
-
-        writeToTerminal(`Predictions: ${predictions}`);
+		
         writeToTerminal(
           `Predictions computed in ${endTimeMs - startTimeMs} milliseconds`);
 		if(predictions > .8){
