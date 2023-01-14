@@ -15,8 +15,19 @@
       // The model (once loaded).
       let model = null;
       let ydf = null;
-	  const preparedString = {'full_url': '', 'protocol': '', 'domain': '', 'path': '', 'query': '', 'fragment': '',  'url_special_characters': '', 'url_length': '', 'num_to_char_ratio': '', "is_phishing": null};
-      YggdrasilDecisionForests().then(function (m) {
+      let preparedString = {
+		full_url: '',
+		protocol: '',
+		domain: '',
+		path: '',
+		query: '',
+		fragment: '',
+		url_special_characters: '',
+		url_length: '',
+		num_to_char_ratio: '',
+		is_phishing: null
+	  };
+	  YggdrasilDecisionForests().then(function (m) {
         ydf = m;
 
         writeToTerminal("The library is loaded");
@@ -62,15 +73,15 @@
 			else{
 				numSpecial = numSpecial + 1;
 			}
-		preparedString['full_url'] =untouchedURL;
-		preparedString['url_special_characters'] = numSpecial;
-		preparedString['url_length'] = lengthOfURL;
-		preparedString['num_to_char_ratio'] = (numChar/(lengthOfURL));
-		preparedString['protocol'] = (parsedURL.protocol);
-		preparedString['domain'] = (parsedURL.domain);
-		preparedString['path'] = (parsedURL.pathname);
-		preparedString['query'] = (parsedURL.search);
-		preparedString['fragment'] = (parsedURL.fragment);
+		preparedString['full_url']=untouchedURL;
+		preparedString['url_special_characters']= numSpecial;
+		preparedString['url_length']=lengthOfURL;
+		preparedString['num_to_char_ratio']=(numChar/(lengthOfURL));
+		preparedString['protocol']=(parsedURL.protocol);
+		preparedString['domain']=(parsedURL.domain);
+		preparedString['path']=(parsedURL.pathname);
+		preparedString['query']=(parsedURL.search);
+		preparedString['fragment']=(parsedURL.fragment);
 		
 		}
 		let examples = JSON.stringify(preparedString);
