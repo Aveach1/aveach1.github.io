@@ -15,7 +15,7 @@
       // The model (once loaded).
       let model = null;
       let ydf = null;
-
+	  const preparedString = {'full_url': '', 'protocol': '', 'domain': '', 'path': '', 'query': '', 'fragment': '',  'url_special_characters': '', 'url_length': '', 'num_to_char_ratio': '', "is_phishing": null};
       YggdrasilDecisionForests().then(function (m) {
         ydf = m;
 
@@ -45,7 +45,34 @@
       }
 
       function applyModel() {
-        let examples = JSON.parse(document.getElementById("examples").value);
+        let untouchedURL = document.getElementById("testingURL").value;
+		var numChar = 0;
+		var numSpecial = 0;
+		var numNumber = 0;
+		const parsedURL = new URL(untouchedURL);
+		for(var i = 0; i < untouchedURL.length(); i++){
+			var currentPos = untouchedURL[i];
+			if((typeof currentPos) === "number"){
+				numNumber = numNumber + 1;
+			}
+			else if((typeof currentPos) === "string"){
+				numChar = numChar + 1;
+			}
+			else{
+				numSpecial = numSpecial + 1;
+			}
+		preparedString['full_url'].append(untouchedURL);
+		preparedString['url_special_characters'].append(numSpecial);
+		preparedString['url_length'].append(untouchedURL.length());
+		preparedString['num_to_char_ratio'].append(numChar/(untouchedURL.length()));
+		preparedString['protocol'].append(parsedURL.protocol);
+		preparedString['domain'].append(parsedURL.domain);
+		preparedString['path'].append(parsedURL.pathname);
+		preparedString['query'].append(parsedURL.search);
+		preparedString['fragment'].append(parsedURL.fragment);
+		
+		}
+		let examples = JSON.parse(document.getElementById("examples").value);
         console.log("Examples:", examples);
 
         const startTimeMs = performance.now();
@@ -99,14 +126,13 @@
     </p>
 
     <p>
-      <label for="examples">Input examples:</label><br />
+      <label for="urlCheck">Input URL:</label><br />
       <textarea
-        id="examples"
-        name="examples"
+        id="checkUrl"
+        name="testingURL"
         style="border: 1px solid black; width: 100%"
         rows="15"
       >
-		{"full_url": ["https://02d4490e35.nxcli.io/fnb2-main/xvciIgY29udGVudD0iI2ZhZmFmYSAiPiA8bWV0YSBjb250ZW50PSIvYW5kcm9pZC1jaHprotectme_card.html"], "protocol": ["https"], "domain": ["02d4490e35.nxcli.io"], "path": ["/fnb2-main/xvciIgY29udGVudD0iI2ZhZmFmYSAiPiA8bWV0YSBjb250ZW50PSIvYW5kcm9pZC1jaHprotectme_card.html"], "query": [""], "fragment": [""], "url_special_characters": [10], "url_length": [125], "num_to_char_ratio": [0.736], "is_phishing": [null]}
       </textarea>
     </p>
 
