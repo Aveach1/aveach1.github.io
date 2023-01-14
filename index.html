@@ -73,15 +73,15 @@
 			else{
 				numSpecial = numSpecial + 1;
 			}
-		preparedString['full_url']=untouchedURL;
-		preparedString['url_special_characters']= numSpecial;
-		preparedString['url_length']=lengthOfURL;
-		preparedString['num_to_char_ratio']=(numChar/(lengthOfURL));
-		preparedString['protocol']=(parsedURL.protocol);
-		preparedString['domain']=(parsedURL.domain);
-		preparedString['path']=(parsedURL.pathname);
-		preparedString['query']=(parsedURL.search);
-		preparedString['fragment']=(parsedURL.fragment);
+		preparedString['full_url']=[untouchedURL];
+		preparedString['url_special_characters']= [numSpecial];
+		preparedString['url_length']=[lengthOfURL];
+		preparedString['num_to_char_ratio']=[(numChar/(lengthOfURL))];
+		preparedString['protocol']=[(parsedURL.protocol)];
+		preparedString['domain']=[(parsedURL.domain)];
+		preparedString['path']=[(parsedURL.pathname)];
+		preparedString['query']=[(parsedURL.search)];
+		preparedString['fragment']=[(parsedURL.fragment)];
 		
 		}
 		let toJSON = JSON.stringify(preparedString);
