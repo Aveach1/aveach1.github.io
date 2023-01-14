@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+	<!-- The base code used for this website can be found at https://github.com/google/yggdrasil-decision-forests/tree/main/yggdrasil_decision_forests/port/javascript/example -->
     <title>Phish Checker</title>
 
     <!-- Yggdrasil Decision Forests -->
@@ -90,15 +91,11 @@
     </style>
   </head>
   <body>
-    <h1>Yggdrasil Decision Forests in Javascript</h1>
+    <h1 style="text-align:center">Are You Getting Phished!?</h1>
 
-    <p>
-      This example demonstrates how to use Machine Learning models trained with
-      the
-      <a href="https://github.com/google/yggdrasil-decision-forests"
-        >Yggdrasil Decision Forests</a
-      >
-      in Javascript.
+    <p style="text-align: center">
+	  This website is based on the example given by Yggdrasil Decision Forests' guide for setting up TensorFlowJS.
+      Features used for classification are:<br> "full_url", "protocol", "domain", "path", "query", "fragment", "url_special_characters", "url_length", "num_to_char_ratio", and "is_phishing".
     </p>
 
     <p>
