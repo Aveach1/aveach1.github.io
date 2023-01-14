@@ -92,14 +92,14 @@
 
         writeToTerminal(`Predictions: ${predictions}`);
         writeToTerminal(
-          `Predictions computed in ${endTimeMs - startTimeMs} milliseconds`
+          `Predictions computed in ${endTimeMs - startTimeMs} milliseconds`);
 		if(predictions > .6){
 			writeToTerminal('The website is valid');
 		}
 		else{
 			writeToTerminal('The website is not safe');
 		}
-        );
+        
       }
 
       function unloadModel() {
