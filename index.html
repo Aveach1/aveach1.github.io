@@ -15,7 +15,7 @@
       // The model (once loaded).
       let model = null;
       let ydf = null;
-      let preparedString = [{
+      let preparedString = {
 		full_url: [],
 		protocol: [],
 		domain: [],
@@ -26,7 +26,7 @@
 		url_length: [],
 		num_to_char_ratio: [],
 		is_phishing: [null]
-	  }];
+	  };
 	  YggdrasilDecisionForests().then(function (m) {
         ydf = m;
 
@@ -84,7 +84,8 @@
 		preparedString['fragment']=(parsedURL.fragment);
 		
 		}
-		let examples = preparedString;
+		let toJSON = JSON.stringify(preparedString);
+		let examples = JSON.parse(toJSON);
         console.log("Examples:", examples);
 
         const startTimeMs = performance.now();
