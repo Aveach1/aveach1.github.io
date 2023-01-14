@@ -51,7 +51,7 @@
 		var numNumber = 0;
 		var lengthOfURL = untouchedURL.length;
 		const parsedURL = new URL(untouchedURL);
-		for(var i = 0; i < untouchedURL.length(); i++){
+		for(var i = 0; i < lengthOfURL; i++){
 			var currentPos = untouchedURL[i];
 			if((typeof currentPos) === "number"){
 				numNumber = numNumber + 1;
