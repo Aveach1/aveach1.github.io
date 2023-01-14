@@ -1,44 +1,143 @@
 <!DOCTYPE html>
-<html lang="EN">
-	<title>Phish Checker</title>
-	<head>
-		<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
-		<script src="https://aveach1.github.io/ydf/inference.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.0/jszip.min.js"></script>
-		<script>
-			let model = null;
-			let ydf = null;
-			let example = {
-				feature_1: ['https://balance-vanillagiftcard.xyz/vanillagiftcardbalance/'],
-				feature_2: ['https'],
-				feature_3: ['balance-vanillagiftcard.xyz'],
-				feature_4: ['/vanillafigtcardbalance'],
-				feature_5: [''],
-				feature_6: [''],
-				feature_7: [7],
-				feature_8: [59],
-				feature_9: [0],
-				feature_10: [null],
-			};
-			YggdrasilDecisionForests().then(function (m) {
-				ydf = m;
-				console.log("The library is loaded and ready to be used!");
-				ydf.loadModelFromUrl("https://aveach1.github.io/complex_gbt_model.zip").then((loadedModel) => {
-					model = loadedModel;
-					console.log("The model is loaded");
-			let prediction = model.predict(example);
-			console.log(prediction);
-				});
-			});
-		</script>
-	</head>
-	<body>
-		<script>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Phish Checker</title>
 
-		</script>
-		<p>You might be getting Phished</p>
-		<p>Wait while we check it out!.</p>
+    <!-- Yggdrasil Decision Forests -->
+    <script src="ydf/inference.js"></script>
 
-	</body>
+    <!-- JSZip -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.0/jszip.min.js"></script>
+
+    <script>
+      // The model (once loaded).
+      let model = null;
+      let ydf = null;
+
+      YggdrasilDecisionForests().then(function (m) {
+        ydf = m;
+
+        writeToTerminal("The library is loaded");
+        document.getElementById("btn_load_model").onclick = loadModel;
+        document.getElementById("btn_apply_model").onclick = applyModel;
+        document.getElementById("btn_unload_model").onclick = unloadModel;
+      });
+
+      function loadModel() {
+        if (ydf == null) {
+          writeToTerminal("The library is not yet loaded.");
+          return;
+        }
+
+        ydf.loadModelFromUrl("model.zip").then((loadedModel) => {
+          model = loadedModel;
+
+          writeToTerminal("Model loaded");
+          writeToTerminal("Input features:");
+          writeToTerminal(model.getInputFeatures());
+
+          document.getElementById("btn_load_model").disabled = true;
+          document.getElementById("btn_apply_model").disabled = false;
+          document.getElementById("btn_unload_model").disabled = false;
+        });
+      }
+
+      function applyModel() {
+        let examples = JSON.parse(document.getElementById("examples").value);
+        console.log("Examples:", examples);
+
+        const startTimeMs = performance.now();
+        let predictions = model.predict(examples);
+        const endTimeMs = performance.now();
+
+        writeToTerminal(`Predictions: ${predictions}`);
+        writeToTerminal(
+          `Predictions computed in ${endTimeMs - startTimeMs} milliseconds`
+        );
+      }
+
+      function unloadModel() {
+        model.unload();
+        model = null;
+
+        writeToTerminal("Model unloaded");
+
+        document.getElementById("btn_load_model").disabled = false;
+        document.getElementById("btn_apply_model").disabled = true;
+        document.getElementById("btn_unload_model").disabled = true;
+      }
+
+      function writeToTerminal(text) {
+        if (typeof text == "object") {
+          text = JSON.stringify(text);
+        }
+        let terminal = document.getElementById("terminal");
+        terminal.value += text + "\n";
+        terminal.scrollTop = terminal.scrollHeight; // focus on bottom
+      }
+    </script>
+
+    <style>
+      .button_box {
+        display: flex;
+        justify-content: space-around;
+      }
+      .button_box button {
+        width: 100%;
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Yggdrasil Decision Forests in Javascript</h1>
+
+    <p>
+      This example demonstrates how to use Machine Learning models trained with
+      the
+      <a href="https://github.com/google/yggdrasil-decision-forests"
+        >Yggdrasil Decision Forests</a
+      >
+      in Javascript.
+    </p>
+
+    <p>
+      <label for="examples">Input examples:</label><br />
+      <textarea
+        id="examples"
+        name="examples"
+        style="border: 1px solid black; width: 100%"
+        rows="15"
+      >
+{
+	feature_1: ['https://balance-vanillagiftcard.xyz/vanillagiftcardbalance/'],
+	feature_2: ['https'],
+	feature_3: ['balance-vanillagiftcard.xyz'],
+	feature_4: ['/vanillafigtcardbalance'],
+	feature_5: [''],
+	feature_6: [''],
+	feature_7: [7],
+	feature_8: [59],
+	feature_9: [0],
+	feature_10: [null]
+}   
+      </textarea>
+    </p>
+
+    <div class="button_box">
+      <button id="btn_load_model" type="button">Load model</button>
+      <button id="btn_apply_model" type="button" disabled>Apply model</button>
+      <button id="btn_unload_model" type="button" disabled>Unload model</button>
+    </div>
+
+    <p>
+      <label for="terminal">Logs:</label><br />
+      <textarea
+        id="terminal"
+        name="terminal"
+        style="border: 1px solid black; font-family: monospace; width: 100%"
+        rows="30"
+      ></textarea>
+    </p>
+  </body>
 </html>
-
