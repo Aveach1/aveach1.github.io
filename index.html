@@ -16,16 +16,16 @@
       let model = null;
       let ydf = null;
       let preparedString = {
-		full_url: '',
-		protocol: '',
-		domain: '',
-		path: '',
-		query: '',
-		fragment: '',
-		url_special_characters: '',
-		url_length: '',
-		num_to_char_ratio: '',
-		is_phishing: null
+		full_url: [],
+		protocol: [],
+		domain: [],
+		path: [],
+		query: [],
+		fragment: [],
+		url_special_characters: [],
+		url_length: [],
+		num_to_char_ratio: [],
+		is_phishing: [null]
 	  };
 	  YggdrasilDecisionForests().then(function (m) {
         ydf = m;
