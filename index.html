@@ -73,7 +73,7 @@
 		preparedString['fragment'] = (parsedURL.fragment);
 		
 		}
-		let examples = JSON.parse(preparedString);
+		let examples = JSON.stringify(preparedString);
         console.log("Examples:", examples);
 
         const startTimeMs = performance.now();
