@@ -84,10 +84,10 @@
 		preparedString['fragment']=[(parsedURL.fragment)];
 		
 		}
-        console.log("Examples:", examples);
+        console.log("Examples:", preparedString);
 
         const startTimeMs = performance.now();
-        let predictions = model.predict(examples);
+        let predictions = model.predict(preparedString);
         const endTimeMs = performance.now();
 
         writeToTerminal(`Predictions: ${predictions}`);
