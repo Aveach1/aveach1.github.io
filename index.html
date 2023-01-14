@@ -62,15 +62,15 @@
 			else{
 				numSpecial = numSpecial + 1;
 			}
-		preparedString['full_url'].append(untouchedURL);
-		preparedString['url_special_characters'].append(numSpecial);
-		preparedString['url_length'].append(untouchedURL.length());
-		preparedString['num_to_char_ratio'].append(numChar/(lengthOfURL));
-		preparedString['protocol'].append(parsedURL.protocol);
-		preparedString['domain'].append(parsedURL.domain);
-		preparedString['path'].append(parsedURL.pathname);
-		preparedString['query'].append(parsedURL.search);
-		preparedString['fragment'].append(parsedURL.fragment);
+		preparedString['full_url'] =untouchedURL;
+		preparedString['url_special_characters'] = numSpecial;
+		preparedString['url_length'] = lengthOfURL;
+		preparedString['num_to_char_ratio'] = (numChar/(lengthOfURL));
+		preparedString['protocol'] = (parsedURL.protocol);
+		preparedString['domain'] = (parsedURL.domain);
+		preparedString['path'] = (parsedURL.pathname);
+		preparedString['query'] = (parsedURL.search);
+		preparedString['fragment'] = (parsedURL.fragment);
 		
 		}
 		let examples = JSON.parse(document.getElementById("examples").value);
